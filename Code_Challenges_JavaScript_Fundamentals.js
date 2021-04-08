@@ -155,3 +155,119 @@ const calculateWeight = (earthWeight, planet) => {
     }
 
 console.log(calculateWeight(100, 'Jupiter')) // Prints 236
+
+/* 7 April 2021
+Write a function, truthyOrFalsy(), that takes in any value and returns true if 
+that value is truthy and false if that value is falsy. */
+
+const truthyOrFalsy = (val) => {
+    if (val) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+console.log(truthyOrFalsy(0)); // Prints false
+
+/* 7 April 2021
+A person’s number of imaginary friends are always 25% (or 1/4) of their total 
+friends. Write a function, numImaginaryFriends(), that takes in the total 
+number of friends a person has and returns the number of imaginary friends they have. 
+Since friends can only come in whole numbers, be sure to round your result up to 
+the nearest whole number before returning it.*/
+
+const numImaginaryFriends = realFriends => Math.ceil(realFriends * .25);
+
+console.log(numImaginaryFriends(20)); // Prints 5
+
+/* 7 April 2021
+Write a function, sillySentence(), that has 3 string parameters and returns the 
+following silly sentence with the blanks filled in by the arguments passed into the function:
+"I am so _____(adj) because I ______ (verb) coding! Time to write some more awesome ______ (noun)!" */
+
+const sillySentence = (adj, verb, noun) => {
+    return `I am so ${adj} because I ${verb} coding! Time to write some more awesome ${noun}!`
+  }
+
+console.log(sillySentence('excited', 'love', 'functions'))
+// Prints I am so excited because I love coding! Time to write some more awesome functions!
+
+/* 8 April 2021
+Write a function, howOld(), that has two number parameters, age and year, and returns how 
+old someone who is currently that age was (or will be) during that year. Handle three different cases:
+
+    1. If the year is in the future, you should return a string in the following format:
+        'You will be [calculated age] in the year [year passed in]'
+    2. If the year is before they were born, you should return a string in the following format:
+        'The year [year passed in] was [calculated number of years] years before you were born'
+    3. If the year is in the past but not before the person was born, you should return a 
+    string in the following format:
+        'You were [calculated age] in the year [year passed in]' */
+
+function howOld(age, year) {
+    const born = 2021 - age;
+    if (year >= 2021) {
+    let newAge = (year - 2021) + age;
+    return `You will be ${newAge} in the year ${year}`;
+    } else if (year < born) {
+    let difference = born - year;
+    return `The year ${year} was ${difference} years before you were born`;
+    } else {
+    let prevAge = year - born;
+    return `You were ${prevAge} in the year ${year}`; 
+    }
+    }
+
+console.log(howOld(28, 2000)); // Prints You were 7 in the year 2000
+console.log(howOld(28, 2022)); // Prints You will be 29 in the year 2022
+console.log(howOld(28, 1923)); // Prints The year 1923 was 70 years before you were born
+
+/* 8 April 2021
+Create a function, tipCalculator(), that has two parameters, a string representing 
+the quality of the service received and a number representing the total cost.
+Return the tip, as a number, based on the following:
+    ‘bad’ should return a 5% tip
+    ‘ok’ should return a 15% tip
+    ‘good’ should return a 20% tip
+    ‘excellent’ should return a 30% tip
+    all other inputs should default to 18% */
+
+console.log(tipCalculator('excellent', 100)) // Prints 30
+console.log(tipCalculator('alright', 175)) // Prints 31.5
+
+/* 8 April 2021
+Write a function, toEmoticon(), that takes in a string and returns the corresponding 
+emoticon as a string. Use a switch/case, and cover these cases:
+    'shrug' should return '|_{"}_|'
+    'smiley face' should return ':)'
+    'frowny face' should return':('
+    'winky face' should return ';)'
+    'heart' should return '<3'
+    any other input should return '|_(* ~ *)_|' */
+
+const toEmoticon = string => {
+    switch (string) {
+        case 'shrug':
+        return '|_{"}_|';
+        break;
+        case 'smiley face':
+        return ':)';
+        break;
+        case 'frowny face':
+        return ':(';
+        break;
+        case 'winky face':
+        return ';)';
+        break;
+        case 'heart':
+        return '<3';
+        break;
+        default:
+        return '|_(* ~ *)_|';
+        break;
+    }
+    }
+
+console.log(toEmoticon("whatever")) // Prints |_(* ~ *)_|
+console.log(toEmoticon('shrug')) // Prints |_{"}_|
