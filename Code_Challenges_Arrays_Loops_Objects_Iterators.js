@@ -180,3 +180,117 @@ const years = [1970, 1999, 1951, 1982, 1963, 2011, 2018, 1922]
 
 console.log(sortYears(years))
 // Prints [ 2018, 2011, 1999, 1982, 1970, 1963, 1951, 1922 ]
+
+/* 18 April 2021
+Write a function justCoolStuff() that takes in two arrays of strings, and, 
+using the built-in .filter() method, returns an array with the items that 
+are present in both arrays. */
+
+const justCoolStuff = (arr1, arr2) => arr1.filter(ele1 => arr2.includes(ele1));
+
+const coolStuff = ['gameboys', 'skateboards', 'backwards hats', 'fruit-by-the-foot', 'pogs', 'my room', 'temporary tattoos'];
+
+const myStuff = [ 'rules', 'fruit-by-the-foot', 'wedgies', 'sweaters', 'skateboards', 'family-night', 'my room', 'braces', 'the information superhighway']; 
+
+console.log(justCoolStuff(myStuff, coolStuff))
+// Prints [ 'fruit-by-the-foot', 'skateboards', 'my room' ]
+
+/* 18 April 2021
+Write a function isTheDinnerVegan() that takes in an array of food objects in the format:
+
+  {name: 'cabbage', source: 'plant' }
+  and returns a boolean value based on whether or not every item in the 
+  array has entirely plant-based origins. */
+
+const isTheDinnerVegan = (arr) => {
+  let veganVar = true;
+  for (let i of arr) {
+    if (i['source'] !== 'plant') {
+      veganVar = false;
+    }
+  };
+  return veganVar;
+  }
+
+const dinner = [{name: 'hamburger', source: 'meat'}, {name: 'cheese', source: 'dairy'}, 
+{name: 'ketchup', source:'plant'}, {name: 'bun', source: 'plant'}, {name: 'dessert twinkies', source:'unknown'}];
+
+console.log(isTheDinnerVegan(dinner))
+// Prints false
+
+/* 18 April 2021
+Write a function sortSpeciesByTeeth() that takes in an array of species objects in the format:
+  {speciesName: 'shark', numTeeth: 50 }
+and sorts the array in ascending order based on the average number of teeth that species p
+ossesses (numTeeth). */
+
+const sortSpeciesByTeeth = arr => arr.sort( (a, b) => a['numTeeth'] - b['numTeeth']);
+
+const speciesArray = [ {speciesName:'shark', numTeeth:50}, {speciesName:'dog', numTeeth:42}, 
+{speciesName:'alligator', numTeeth:80}, {speciesName:'human', numTeeth:32}];
+
+console.log(sortSpeciesByTeeth(speciesArray))
+// Prints [ { speciesName: 'human', numTeeth: 32 },
+//   { speciesName: 'dog', numTeeth: 42 },
+//   { speciesName: 'shark', numTeeth: 50 },
+//   { speciesName: 'alligator', numTeeth: 80 } 
+
+/* 18 April 2021
+Write a function, findMyKeys(), that takes in an array of strings which may or may not contain 'keys'. 
+If the keys are in the array, your function should return the index at which they can be found. 
+If they’re not in the array, your function should return -1.
+  const drawer = ['rubber bands', 'tape', 'old menus', 'batteries'];
+  findMyKeys(drawer);
+  // Should return -1 */
+
+const findMyKeys = arr => arr.findIndex(item => item === 'keys');
+
+const randomStuff = ['credit card', 'screwdriver', 'receipt', 'gum', 'keys', 'used gum', 'plastic spoon'];
+
+console.log(findMyKeys(randomStuff))
+// Prints 4
+
+/* 18 April 2021
+Write a function, dogFactory(). It should:
+  have 3 parameters: name, breed, and weight (in that order),
+  expect name and breed to be strings,
+  expect weight to be a number,
+  return an object,
+  have each of those parameters as keys on the returned object returned with the values of 
+  the arguments that were passed in,
+  have getters and setters for each of the three properties and change the property 
+  names to have an underscore prepended, and
+  have two methods: .bark() which returns ‘ruff! ruff!’ and .eatTooManyTreats() which should 
+  increment the weight property by 1 */
+
+const dogFactory = (name, breed, weight) => {
+  return {
+  _name: name,
+  _breed: breed,
+  _weight: weight,
+  get name() {
+    return this._name;
+  },
+  set name(name) {
+    this._name = name;
+  },
+  get breed() {
+    return this._breed;
+  },
+  set breed(breed) {
+    this._breed = breed;
+  },
+  get weight() {
+    return this._weight;
+  },
+  set weight(weight) {
+    this._weight = weight;
+  },
+  bark() {
+    return 'ruff! ruff!'
+  },
+  eatTooManyTreats() {
+    this.weight++;
+  }
+}
+}
