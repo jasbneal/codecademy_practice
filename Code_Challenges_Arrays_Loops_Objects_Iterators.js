@@ -145,3 +145,38 @@ const animals = ['panda', 'turtle', 'giraffe', 'hippo', 'sloth', 'human'];
 console.log(convertToBaby(animals)) 
 // Prints ['baby panda', 'baby turtle', 'baby giraffe', 'baby hippo', 'baby sloth', 'baby human'];
 
+/* 17 April 2021
+Write a function, squareNums(), that takes in an array of numbers and, using .map(), 
+returns an array with the square of each of the elements of that array. */
+
+const numbers = [2, 7, 9, 171, 52, 33, 14];
+
+const toSquare = num => num * num;
+
+const squareNums = arr => arr.map(toSquare); 
+
+const squareNums = arr => arr.map(e => e * e); // Using an anonymous function
+
+/* 18 April 2021
+Write a function shoutGreetings() that takes in an array of strings and returns a new array. 
+This new array should contain all the strings from the argument array but with capitalized 
+letters and an exclamation point appended to the end: 'heya' will become 'HEYA!' */
+
+const shoutGreetings = arr => arr.map(element => (element.toUpperCase() + '!'));
+
+const greetings = ['hello', 'hi', 'heya', 'oi', 'hey', 'yo'];
+
+console.log(shoutGreetings(greetings))
+// Prints [ 'HELLO!', 'HI!', 'HEYA!', 'OI!', 'HEY!', 'YO!' ]
+
+/* 18 April 2021
+Write a function sortYears() that takes in an array of years, and, using the 
+built-in .sort() method, returns that array with the years sorted in descending order. */
+
+const sortYears = arr => arr.sort( (a,b) => b - a);
+// If compareFunction(a, b) returns greater than 0, sort b before a.
+
+const years = [1970, 1999, 1951, 1982, 1963, 2011, 2018, 1922]
+
+console.log(sortYears(years))
+// Prints [ 2018, 2011, 1999, 1982, 1970, 1963, 1951, 1922 ]
