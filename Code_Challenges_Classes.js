@@ -158,25 +158,68 @@ cipher.decrypt('K <3 OA RWRRA'); // returns 'i <3 my puppy'
 */
 
 class ShiftCipher {
-    constructor(shift) {
-        this._shift = (shift % 26);
-    }
+  constructor(shift) {
+      this._shift = (shift % 26);
+      this._lettersIndex = [['A', 1], ['B', 2], ['C', 3], ['D', 4], ['E', 5], ['F', 6], 
+      ['G', 7], ['H', 8], ['I', 9], ['J', 10], ['K', 11], ['L', 12], ['M', 13], ['N', 14], 
+      ['O', 15], ['P', 16], ['Q', 17], ['R', 18], ['S', 19], ['T', 20], ['U', 21], ['V', 22],
+      ['W', 23], ['X', 24], ['Y', 25], ['Z', 26]];
+  }
 
-    // 1. How do we catalog the letters? Nested array and iterate to find it's #? Array with objects nested?
-    // 2. How do we reset? If letter == z, then new letter == 0 + shift?
-    // 3. Shift % 26 in case number > 26?
-    // 4. 
-    encrypt(msg) {
-        const lettersIndex = [['A', 1], ['B', 2], 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-        let newString = '';
-        msg.forEach(letter => {
-            new_string += msg[l];
-
-            }
-        }
-
-    // 
-    decrypt(msg) {}
-
-    }
+  // 1. How do we catalog the letters? Nested array and iterate to find it's #? Array with objects nested?
+  // 2. How do we reset? If letter == z, then new letter == 0 + shift?
+  // 3. Shift % 26 in case number > 26?
   
+  encrypt(msg) {
+    let newMsg = msg.toUpperCase();
+    let newString = "";
+
+    for (let count = 0; count < newMsg.length; count++) {
+      let found = false;
+      for (let i = 0; i < this._lettersIndex.length; i++) {
+        if (newMsg[count] === this._lettersIndex[i][0]) {
+          if ((this._shift + i) < 25) {
+            newString += this._lettersIndex[i + this._shift][0];
+            found = true;
+          } else {
+            newString += this._lettersIndex[i + this._shift - 26][0];
+            found = true;
+          } 
+        }
+      }
+      if (!found) {
+        newString += newMsg[count];
+      }
+      found = false;
+    }
+    return newString;
+  }
+
+  decrypt(msg) {
+    let newMsg = msg.toUpperCase();
+    let newString = "";
+    for (let count = 0; count < newMsg.length; count++) {
+      let found = false;
+      for (let i = 0; i < this._lettersIndex.length; i++) {
+        if (newMsg[count] === this._lettersIndex[i][0]) {
+          if ((i - this._shift) >= 1) {
+            newString += this._lettersIndex[i - this._shift][0];
+            found = true;
+          } else {
+            newString += this._lettersIndex[i - this._shift + 26][0];
+            found = true;
+          } 
+        }
+      }
+      if (!found) {
+        newString += newMsg[count];
+      }
+      found = false;
+    }
+    return newString.toLowerCase();
+  }
+}
+
+const cipher = new ShiftCipher(2);
+cipher.encrypt('I love to code!'); // returns 'K NQXG VQ EQFG!'
+cipher.decrypt('K <3 OA RWRRA'); // returns 'i <3 my puppy'
